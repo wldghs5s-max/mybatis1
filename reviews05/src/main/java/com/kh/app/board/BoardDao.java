@@ -21,4 +21,8 @@ public class BoardDao {
 		return ss.selectOne("BoardMapper.selectBoardByNo",no);
 	}
 
+	public int hitBoard(SqlSession ss, String no) {
+		return ss.update("BoardMapper.hitBoard",no);
+	}
+
 }

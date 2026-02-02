@@ -20,8 +20,10 @@
 		)
 	</insert>
 	<select id="selectBoardList" resultType="BoardVo">
-		SELECT *
-		FROM BOARD
+		SELECT B.NO, TITLE, NICK AS WRITER_NICK , HIT
+		FROM BOARD B
+		JOIN MEMBER M
+		ON (M.NO = B.WRITER_NO)
 		<where>
 			<if test="searchType==1 or searchType == 3">
 				TITLE LIKE '%${searchText}%'
@@ -37,5 +39,10 @@
 		FROM BOARD
 		WHERE NO = #{no}
 	</select>
+	<update id="hitBoard">
+		UPDATE BOARD SET
+		HIT = HIT+1
+		WHERE NO = #{no}
+	</update>
 
 </mapper>

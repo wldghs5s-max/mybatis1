@@ -34,7 +34,13 @@ public class BoardService {
 
 	public BoardVo selectBoardByNo(String no) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		int result = dao.hitBoard(ss,no);
 		BoardVo vo = dao.selectBoardByNo(ss, no);
+		if (result==1) {
+			ss.commit();
+		}else {
+			ss.rollback();
+		}
 		ss.close();
 		return vo;
 	}

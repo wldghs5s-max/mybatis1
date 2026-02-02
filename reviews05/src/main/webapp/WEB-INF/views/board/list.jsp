@@ -30,7 +30,7 @@
 					<tr>
 						<td><a href="/board/detail?no=${vo.no}">${vo.no }</a></td>
 						<td><a href="/board/detail?no=${vo.no}">${vo.title}</a></td>
-						<td>${vo.writerNo}</td>
+						<td>${vo.writerNick}</td>
 						<td>${vo.hit }</td>
 
 					</tr>
