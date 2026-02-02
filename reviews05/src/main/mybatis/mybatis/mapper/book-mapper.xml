@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="BookMapper">
+
+	<insert id="insert">
+		INSERT INTO BOOK
+		(
+			TITLE
+			, PRICE
+		)
+		VALUES
+		(
+			#{title}
+			, #{price}		
+		)
+	</insert>
+	<select id="selectBookList" resultType="BookVo">
+		SELECT *
+		FROM BOOK
+		WHERE TITLE LIKE '%${searchText}%'
+		ORDER BY NO DESC
+	</select>
+	<select id="detailView" resultType="BookVo">
+		SELECT *
+		FROM BOOK
+		WHERE NO = #{no}
+	</select>
+	<update id="update">
+		UPDATE BOOK
+		SET TITLE = #{title}
+		, PRICE = #{price}
+		, RENTAL_YN = #{rentalYn}
+		, UPDATED_AT = SYSDATE
+		WHERE NO = #{no}
+	</update>
+	
+
+
+</mapper>

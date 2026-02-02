@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="MemberMapper">
+
+	<insert id="join">
+		INSERT INTO MEMBER
+		(
+			ID
+			,PW
+			,NICK
+		)
+		VALUES
+		(
+			#{id}
+			, #{pw}
+			, #{nick}
+		)
+	</insert>
+	
+	<select id="login" resultType="MemberVo">
+		SELECT *
+		FROM MEMBER
+		WHERE ID = #{id}
+		AND PW = #{pw}
+		AND QUIT_YN = 'N'
+	</select>
+	<update id="editNick">
+		UPDATE MEMBER SET
+		NICK = #{nick}
+		, UPDATED_AT = SYSDATE
+		WHERE NO = #{no}
+		AND QUIT_YN = 'N'
+	</update>
+	
+	<update id="delete">
+		UPDATE MEMBER SET
+		QUIT_YN = 'Y'
+		, UPDATED_AT = SYSDATE
+		WHERE NO = #{no}
+	</update>
+	<select id="selectMemberList" resultType="MemberVo">
+	 	SELECT *
+	 	FROM MEMBER
+		
+	
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

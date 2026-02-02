@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+html , body {
+    padding: 0;
+    margin: 0;
+}
+
+
+header{
+	border: 1px solid black;
+    height: 20vh;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 6fr 2fr;
+    place-items: center center;
+}
+
+#loginArea > form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    & > input[type=submit]{
+        grid-row: span 2;
+    }
+}
+
+nav {
+	border: 1px solid black;
+    height: 10vh;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4 , 1fr);
+    place-items: center center;
+}
+
+main{
+	display:flex;
+	justify-content: center;
+	align-items: center; 
+}
