@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.app.member.MemberVo;
+
 @WebServlet("/book/update")
 public class BookUpdateController extends HttpServlet{
 	String no;
@@ -18,7 +20,14 @@ public class BookUpdateController extends HttpServlet{
 			no = req.getParameter("no");
 			BookVo vo = new BookService().detailView(no);
 			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/WEB-INF/views/book/update.jsp").forward(req, resp);
+			
+			MemberVo loginMembervo = (MemberVo)req.getSession().getAttribute("loginMemberVo");
+			if(loginMembervo==null || !loginMembervo.getId().equals("user01")) {
+				req.getSession().setAttribute("alertMsg", "관리자 로그인후 접근가능");
+				resp.sendRedirect("/home");
+			}else {
+				req.getRequestDispatcher("/WEB-INF/views/book/update.jsp").forward(req, resp);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
